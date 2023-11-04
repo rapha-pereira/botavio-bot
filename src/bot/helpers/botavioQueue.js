@@ -1,6 +1,6 @@
 // Base class to handle multiple requests using Lock Service
 
-class BotavioRequestsQueue {
+class BotavioQueue {
   constructor(){
     this.lockService = LockService.getScriptLock();
   }

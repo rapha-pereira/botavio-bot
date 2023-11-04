@@ -1,0 +1,38 @@
+{
+  "name": "botaviobot",
+  "version": "1.0.0",
+  "description": "A Telegram Bot for answering your queries and scooping up the juiciest IFSC Campus Caçador info! 🤖",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "login": "clasp login",
+    "logout": "clasp logout",
+    "clone": "clasp clone 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
+    "pull": "clasp pull",
+    "push": "clasp push",
+    "open": "clasp open",
+    "deploy": "clasp deploy -i 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN --description \"$npm_package_version\"",
+    "undeploy": "clasp undeploy 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
+    "list-files": "clasp list",
+    "version-description": "clasp versions -i 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
+    "set-root-folder": "clasp set-root 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rapha-pereira/botavio-bot.git"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "botavio"
+  ],
+  "author": "Raphael P. Gomes",
+  "license": "GNU-General-Public-License",
+  "bugs": {
+    "url": "https://github.com/rapha-pereira/botavio-bot/issues"
+  },
+  "homepage": "https://github.com/rapha-pereira/botavio-bot#readme",
+  "dependencies": {
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.76"
+  }
+}

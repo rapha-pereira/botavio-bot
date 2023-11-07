@@ -1,12 +1,8 @@
 // Here we define utils methods or functions.
 
 var Utils = {
-  jsonParser: function(strToParse) {
-    return JSON.parse( strToParse )
-  },
-
   checkIfArray: function(obj) {
-    if ( Array.isArray( obj ) ) {
+    if (Array.isArray(obj)) {
       return true
     }
     else {
@@ -15,8 +11,8 @@ var Utils = {
   },
 
   replaceAndSplitStr: function(str, value, toReplace, splitBy) {
-    let replacedStr = str.replace( value, toReplace )
-    let splitedStr = replacedStr.split( splitBy )
+    let replacedStr = str.replace(value, toReplace)
+    let splitedStr = replacedStr.split(splitBy)
     return splitedStr
   },
 
@@ -31,9 +27,9 @@ var Utils = {
   dateSentinel: function() {
     let actualDate = new Date();
     let actualDay = actualDate.getDate();
-    let actualMonth = actualDate.getMonth()+1;
+    let actualMonth = actualDate.getMonth() + 1;
     let actualYear = actualDate.getFullYear();
-    let actualDateFormatedString = Utilities.formatDate( actualDate, "Americas_Sao Paulo", "dd/MM/yyyy" );
+    let actualDateFormatedString = Utilities.formatDate(actualDate, "Americas_Sao Paulo", "dd/MM/yyyy");
 
     return {
       actDT: actualDate,
@@ -43,25 +39,6 @@ var Utils = {
       actYear: actualYear
     }
   },
-
-  checkCache: function(key) {
-    const cache = CacheService.getScriptCache();
-    const cachedValue = cache.get(key);
-      
-    if (cachedValue !== null) {
-      // The item exists in the cache.
-      return cachedValue;
-    } else {
-      // The item is not in the cache.
-      return null;
-    }
-  },
-
-  saveCache: function(key, value) {
-    const cache = CacheService.getScriptCache();
-    cache.put(key, value, 21600); // Cache for 6 hours
-    return value
-  }
 }
 
 // Source: http://stackoverflow.com/questions/497790
@@ -69,12 +46,12 @@ var datesUtil = {
     convert:function(d) {
         // Converts the date in d to a date-object. The input can be:
         //   a date object: returned without modification
-        //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+        //   an array     : Interpreted as [year,month,day]. NOTE: month is 0-11.
         //   a number     : Interpreted as number of milliseconds
         //                  since 1 Jan 1970 (a timestamp) 
         //   a string     : Any format supported by the javascript engine, like
         //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-        //  an object     : Interpreted as an object with year, month and date
+        //   an object    : Interpreted as an object with year, month and date
         //                  attributes.  **NOTE** month is 0-11.
         return (
             d.constructor === Date ? d :

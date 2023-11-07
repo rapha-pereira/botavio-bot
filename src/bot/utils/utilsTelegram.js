@@ -1,11 +1,12 @@
-// Here we define utils for telegram methods or functions.
+/**
+ * A helper to do some transformations on data received from Telegram.
+ */
 
 var UtilsTelegram = {
-  /**
-   * Get the chat ID from a Telegram message object.
-   * @param {Object} messageObj - The Telegram message object.
-   * @returns {number|null} - The chat ID or null if not found.
-   */
+  JSONParser: function(strToParse) {
+    return JSON.parse(strToParse)
+  },
+
   getChatId: function (messageObj) {
     // Check if messageObj is falsy or null and return null
     if (!messageObj) return null;
@@ -23,7 +24,7 @@ var UtilsTelegram = {
     }
   },
 
-  normalizeCommandsStr: function (str) {
+  normalizeMessage: function (str) {
     // Remove everything after @ and @ itself
     return str.trim().toUpperCase().replace(/@.*/, "");
   }

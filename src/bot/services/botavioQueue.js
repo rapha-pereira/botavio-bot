@@ -1,11 +1,11 @@
 // Base class to handle multiple requests using Lock Service
 
 class BotavioQueue {
-  constructor(){
+  constructor() {
     this.lockService = LockService.getScriptLock();
   }
 
-  isFreeQueue(){
+  isFreeQueue() {
     let freeQueue = this.lockService.tryLock(30000);
     
     if (!freeQueue){
@@ -17,7 +17,7 @@ class BotavioQueue {
     }
   }
 
-  releaseQueue(){
+  releaseQueue() {
     this.lockService.releaseLock();
     return true;
   }

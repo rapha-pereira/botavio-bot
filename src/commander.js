@@ -1,23 +1,35 @@
 function doPost(e) {
-  // Get Botavio queue to wait any other executions in progress
+  // Get Botavio queue to wait for any other executions in progress
   const queue = new BotavioRequestsQueue();
 
   if (queue.isFreeQueue()) {
     const botavio = new Botavio();
+    const requestHandler = new WebhookHandler(e);
 
-    const postData = JSON.parse(e.postData.contents);
-    const chatId = UtilsTelegram.getChatId(postData);
-    const receivedMessage = UtilsTelegram.normalizeCommandsStr(postData.message.text);
-    
-    switch(receivedMessage) {
-      case '/help':
-        return botavio.sendMessage(chatId, HELP_MESSAGE);
+    const response = requestHandler.handleWebhook()
 
+    switch (response.command) {
       case '/vaiteraula':
-        return Utils.checkCache("REPORTS__LESSON_OF_DAY")
-    
-    }
-    const tt = botavio.setWebhook("https://script.google.com/macros/s/AKfycbyI_d4JVnZFd-OKFn5O0rnCzs0CXLO-KK_FlqBvG0DeQ1A2s4gE1-xl7gS8-WK-3N4/exec")
+        botavio.sendMessage(
+          response.data.chatId,
+          CALENDAR_RESPONSE_MESSAGE(response.data.username, response.report)
+        )
+
+      case '/validacao':
+        response.report.forEach(x => {
+          botavio.sendMessage(
+            response.data.chatId,
+            String(
+              "*Nome completo: *" + x[1]
+              + "\n*Data do pedido: *" + x[0]
+              + "\n*Curso: *" + x[2]
+              + "\n*Solicitação: *" + x[4]
+              + "\n*Matéria a ser validada: *" + x[5]
+              + "\n*Status da solicitação: *" + x[8]
+            )
+          )
+        });
+      }
 
     queue.releaseQueue()
   }
@@ -26,22 +38,3 @@ function doPost(e) {
   }
 }
 
-function funtst() {
-  const regex = /^\/[^@\s]+(@[^@\s]+)?$/;
-  const strings = [
-    "/help@BotavioBot",
-    "/validacao",
-    "/validacao@BotavioBot",
-    "/another_command",
-  ];
-
-  strings.forEach((str) => {
-    if (regex.test(str)) {
-      console.log(`Matched: ${str}`);
-    } else {
-      console.log(`Not matched: ${str}`);
-    }
-  });
-
-
-}

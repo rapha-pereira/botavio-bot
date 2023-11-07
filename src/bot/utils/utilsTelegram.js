@@ -4,7 +4,14 @@
 
 var UtilsTelegram = {
   JSONParser: function(strToParse) {
-    return JSON.parse(strToParse)
+    let parsedObject;
+    try {
+      parsedObject = JSON.parse(strToParse);
+    } catch (error) {
+      // If parsing fails, consider it as already an object
+      parsedObject = strToParse;
+    }
+    return parsedObject;
   },
 
   getChatId: function (messageObj) {

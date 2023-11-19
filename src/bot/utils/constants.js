@@ -67,10 +67,6 @@ const HELP_MESSAGE = "Ola, *casada*. \nMeus comandos são:\n  /validacao, /vaite
   + "\nO formato do comando de validacao é: *nome,data*"
   + "\n_Se voce não quiser filtrar por data, deixe o campo vazio, sem a virgula após o campo de nome._"
 
-const DEV_IDIOT_DEFAULT_MESSAGE = "*Olá casada, Botavio Reformado aqui! (eu não lancei ainda, hehe)*\n"
-  + "Essa mensagem foi enviada pq o burro do dev "
-  + "esqueceu de colocar uma mensagem pra eu enviar neste comando, to com um erro desconhecido."
-
 const CALENDAR_RESPONSE_MESSAGE = (a, b) => String(`@${a}, ${b}`)
 const REQUEST_VALIDATION_RESPONSE_MESSAGE = ( a, b, c, d, e, f ) => String(
   `*Nome completo: *${a}
@@ -80,6 +76,8 @@ const REQUEST_VALIDATION_RESPONSE_MESSAGE = ( a, b, c, d, e, f ) => String(
   \n*Matéria a ser validada: *${e}
   \n*Status da solicitação: *${f}`
 )
+const REQUEST_RESPONSE_TOO_LARGE_MESSAGE = "Fala tu!\nOs dados solicitados são muito grandes, por isso, segue em anexo os dados em um arquivo txt."
+const REQUEST_UNKNOWN_ERROR_MESSAGE = "Fala tu!\nOcorreu um erro desconhecido, por favor, tente novamente mais tarde."
 
 
 //https://www.ocordova.me/writing/telegram-bot-with-apps-script

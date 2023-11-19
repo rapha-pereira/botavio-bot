@@ -9,7 +9,7 @@ class LessonOfDayReport {
   
       const currentMonthStr = REPORTS__CALENDAR_MONTH_INT_TO_STR[this._dateSentinel["actMonth"]];
       const currentDayInt = this._dateSentinel["actDay"];
-      const currentMonthRange = REPORTS__CALENDAR_MONTH_CELLS_RANGE[String(currentMonthStr)];
+      const currentMonthRange = REPORTS__CALENDAR_MONTH_CELLS_RANGE[currentMonthStr];
       const currentMonthValues = REPORTS__CALENDAR_SHEET.getRange(currentMonthRange).getValues(); 
       const columnOfCurrentDay = currentMonthValues[0].indexOf(currentDayInt) + 1; // +1 because range starts at 0
   
@@ -27,9 +27,9 @@ class LessonOfDayReport {
   
     report() {
       const cellColor = this._getTodayCellColor();
-      return String(
-        REPORTS__CALENDAR_HEX_MAP[cellColor]
-      )
+      return {
+        "reportType": "text",
+        "reportData": String(REPORTS__CALENDAR_HEX_MAP[cellColor])
+      }
     }
   }
-  

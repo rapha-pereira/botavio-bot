@@ -9,19 +9,42 @@ var Utils = {
       return false
     }  
   },
-
-  replaceAndSplitStr: function(str, value, toReplace, splitBy) {
-    let replacedStr = str.replace(value, toReplace)
-    let splitedStr = replacedStr.split(splitBy)
-    return splitedStr
-  },
-
+  
   normalizeString: function(input) {
-    return input.trim().toUpperCase();
+    return input.trim().toLowerCase();
   },
 
   parseBRDate: function(input) {
-    return Utilities.parseDate(input, "GMT-3", "dd/mm/YYYY' 'HH:mm:ss");
+    const dateTimeParts = input.split(' ');
+
+    if (dateTimeParts.length > 2) {
+      throw new Error("Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.");
+    }
+
+    const datePart = dateTimeParts[0];
+    const timePart = dateTimeParts[1] || "00:00:00";
+
+    const dateParts = datePart.split('/');
+    const timeParts = timePart.split(':');
+
+    if (dateParts.length !== 3 || timeParts.length !== 3) {
+      throw new Error("Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.");
+    }
+
+    const day = parseInt(dateParts[0]);
+    const month = parseInt(dateParts[1]);
+    const year = parseInt(dateParts[2]);
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const seconds = parseInt(timeParts[2]);
+
+    if (isNaN(day) || isNaN(month) || isNaN(year) || isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+      throw new Error("Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.");
+    }
+
+    const dateObject = new Date(year, month - 1, day, hours, minutes, seconds);
+
+    return dateObject;
   },
 
   dateSentinel: function() {
@@ -38,6 +61,23 @@ var Utils = {
       actMonth: actualMonth, 
       actYear: actualYear
     }
+  },
+
+  // Maybe can be useful in the future //
+  // Source: https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+  
+  // arrayToCSV: function (dataArray) {
+  //   return dataArray.map(row =>
+  //     row
+  //     .map(String)  // convert every value to String
+  //     .map(v => v.replaceAll('"', '""'))  // escape double quotes
+  //     .map(v => `"${v}"`)  // quote it
+  //     .join(',')  // comma-separated
+  //   ).join('\r\n');  // rows starting on new lines
+  // },
+
+  actualTimeStamp: function() {
+    return Utilities.formatDate(new Date(), "Americas_Sao Paulo", "dd_MM_yyyy_HH_mm_ss");
   },
 }
 

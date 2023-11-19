@@ -68,10 +68,12 @@ const BOT_DEFAULT_GROUP =
   PropertiesService.getScriptProperties().getProperty("BOT_DEFAULT_GROUP");
 
 const HELP_MESSAGE =
-  "Ola, *casada*. \nMeus comandos são:\n  /validacao, /vaiteraula e /atividades." +
-  "\n\nO comando /validacao precisa ser passado com dois campos: um de nome e outro de data, sendo o de data opcional." +
-  "\nO formato do comando de validacao é: *nome,data*" +
-  "\n_Se voce não quiser filtrar por data, deixe o campo vazio, sem a virgula após o campo de nome._";
+  "Olá, *senhores*. \nMeus comandos são:\n  /validacao, /vaiteraula e /help." +
+  "\nO comando /validacao precisa ser passado como: *nome, data* ou *nome* (sem filtro de data)." +
+  "\nO comando /vaiteraula não precisa de nenhum campo." +
+  "\nO comando /help mostra essa mensagem." +
+  "\n_Eu retornarei um erro caso o comando de validação seja passado sem o filtro de nome, pela grande quantidade de dados que terei que buscar._";
+
 
 const CALENDAR_RESPONSE_MESSAGE = (a, b) => String(`@${a}, ${b}`);
 const REQUEST_VALIDATION_RESPONSE_MESSAGE = (a, b, c, d, e, f) =>

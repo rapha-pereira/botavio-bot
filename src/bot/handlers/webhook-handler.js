@@ -46,6 +46,10 @@ class WebhookHandler {
         report = reportsHandler.redirectValidations(args);
         return new BotavioRequestModel(data, command, report);
 
+      case "/help":
+        report = reportsHandler.redirectHelp();
+        return new BotavioRequestModel(data, command, report);
+
       default:
         // Handle unknown commands.
         return new BotavioRequestModel(data, "unknown", report);

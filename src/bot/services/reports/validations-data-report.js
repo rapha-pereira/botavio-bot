@@ -160,8 +160,13 @@ class ValidationReport {
   report(byDateOf, nameToSearch) {
     // Declaring necessary vars
     const validationPersonName = this._utils.normalizeString(nameToSearch);
-    let validationDateStart;
 
+    // If the name is empty, we return undefined since the search would be too broad.
+    if (validationPersonName == "" || validationPersonName == null) {
+      return undefined;
+    }
+
+    let validationDateStart;
     try {
       validationDateStart = this._utils.parseBRDate(byDateOf);
     } catch {

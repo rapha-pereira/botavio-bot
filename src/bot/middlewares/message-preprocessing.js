@@ -25,13 +25,13 @@ class MessagePreprocessingMiddleware {
     const replyMessageId = this.utils.getReplyMessageId(contents);
 
     return new TelegramDataModel(
-      contents,           // Object
-      chatId,             // Number (Integer)
-      messageId,          // Number (Integer)
-      userFirstName,      // String
-      messageText,        // String
-      replyMessageId,     // Number (Integer)
-      this.data           // Object
+      contents, // Object
+      chatId, // Number (Integer)
+      messageId, // Number (Integer)
+      userFirstName, // String
+      messageText, // String
+      replyMessageId, // Number (Integer)
+      this.data // Object
     );
   }
 }

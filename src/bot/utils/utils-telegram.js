@@ -2,7 +2,7 @@
  * A helper to do some transformations on data received from Telegram.
  */
 var UtilsTelegram = {
-  JSONParser: function(strToParse) {
+  JSONParser: function (strToParse) {
     let parsedObject;
     try {
       parsedObject = JSON.parse(strToParse);
@@ -25,4 +25,4 @@ var UtilsTelegram = {
     // Remove everything after @ and @ itself
     return str.trim().toLowerCase().replace(/@.*/, "");
   },
-}
+};

@@ -17,8 +17,8 @@ class BotavioQueue {
    */
   isFreeQueue() {
     let freeQueue = this.lockService.tryLock(30000);
-    
-    if (!freeQueue){
+
+    if (!freeQueue) {
       return false;
     }
 

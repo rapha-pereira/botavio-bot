@@ -12,7 +12,7 @@ function doPost(e) {
     const botavio = new Botavio();
 
     const handler = new WebhookHandler(e);
-    const response = handler.handleWebhook()
+    const response = handler.handleWebhook();
 
     // Send response to Telegram if it exists
     if (response != undefined) {
@@ -20,6 +20,6 @@ function doPost(e) {
     }
 
     // Release the queue, freeing it for other executions
-    queue.releaseQueue()
+    queue.releaseQueue();
   }
 }

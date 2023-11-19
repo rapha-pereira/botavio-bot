@@ -15,29 +15,27 @@ class MessagePreprocessingMiddleware {
    * @param {object} data - The data as JS Object of the Telegram data received.
    */
   constructor(data) {
-    this.data = data;
     this.utils = UtilsTelegram;
+    this.data = data;
   }
 
   process() {
-    Logger.log(`MessagePreprocessingMiddleware - Processing data`);
-
     // Extract properties from objects using destructuring.
-    const { contents } = this.utils.JSONParser(this.data.postData.contents);
+    const contents = this.utils.JSONParser(this.data.postData.contents);
     const chatId = this.utils.getChatId(contents);
     const messageId = contents.message.message_id;
-    const username = contents.message.from.username;
+    const userFirstName = contents.message.from.first_name;
     const messageText = this.utils.normalizeMessage(contents.message.text);
+    const replyMessageId = this.utils.getReplyMessageId(contents);
 
-    Logger.log(`MessagePreprocessingMiddleware - Processed message ${messageId}`);
-
-    return new TelegramDataModel({
+    return new TelegramDataModel(
       contents,           // Object
       chatId,             // Number (Integer)
       messageId,          // Number (Integer)
-      username,           // String
+      userFirstName,      // String
       messageText,        // String
-      rawData: this.data  // Object
-    });
+      replyMessageId,     // Number (Integer)
+      this.data           // Object
+    );
   }
 }

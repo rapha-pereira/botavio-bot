@@ -4,6 +4,7 @@
 class Botavio {
   /**
    * Creates a new instance of the Botavio bot.
+   * @constructor
    */
   constructor() {
     this._utils = Utils;
@@ -11,37 +12,39 @@ class Botavio {
 
   /**
    * Sets the webhook URL for the bot.
-   * 
    * @param {string} webhook - The webhook URL to set.
    * @returns {boolean} - True if the webhook was set successfully.
    */
   setWebhook(webhook) {
     const payload = {
-      "method": "setWebhook",
-      "url": webhook
-    }
-    return this._post(payload)
+      method: "setWebhook",
+      url: webhook,
+    };
+    return this._post(payload);
   }
 
   /**
    * Sends the content to Telegram through Botavio.
-   * 
    * @param {BotavioRequestModel} data - The message data.
    * @returns {boolean} - True if the message was sent successfully.
    */
   sendMessage(data) {
     // Create payload initial object
-    GmailApp.sendEmail("raphaelpgomes1@gmail.com", "testidk", JSON.stringify(data))
+    GmailApp.sendEmail(
+      "raphaelpgomes1@gmail.com",
+      "testidk",
+      JSON.stringify(data)
+    );
     const payload = {
-      'chat_id': String(data.telegramData.chatId),
-      'reply_to_message_id': String(data.telegramData.messageId),
-      'parse_mode': "Markdown",
-      'disable_web_page_preview': true,
-      'disable_notification': false
+      chat_id: String(data.telegramData.chatId),
+      reply_to_message_id: String(data.telegramData.messageId),
+      parse_mode: "Markdown",
+      disable_web_page_preview: true,
+      disable_notification: false,
     };
 
     // Handle received data
-    const reportType = data.report.reportType
+    const reportType = data.report.reportType;
 
     if (reportType == "text") {
       payload.method = "sendMessage";
@@ -50,8 +53,8 @@ class Botavio {
 
     if (reportType == "file") {
       payload.method = "sendDocument";
-      payload.caption = REQUEST_RESPONSE_TOO_LARGE_MESSAGE
-      payload.document = this._getTextBlobFromData(data)
+      payload.caption = REQUEST_RESPONSE_TOO_LARGE_MESSAGE;
+      payload.document = this._getTextBlobFromData(data);
     }
 
     if (!reportType == "text" && !reportType == "file") {
@@ -65,12 +68,12 @@ class Botavio {
 
   /**
    * Returns a text blob from the given data.
-   *
    * @param {Object} data - The data object.
    * @returns {Blob} The text blob.
+   * @private
    */
-  _getTextBlobFromData (data) {
-    const currentTimestamp = this._utils.actualTimeStamp()
+  _getTextBlobFromData(data) {
+    const currentTimestamp = this._utils.actualTimeStamp();
     return Utilities.newBlob(
       data.report.reportData,
       "text/plain",
@@ -80,19 +83,18 @@ class Botavio {
 
   /**
    * Sends a POST request to the Telegram API.
-   * 
    * @param {object} payload - The payload to send.
    * @returns {boolean} - True if the request was sent successfully.
    * @private
    */
   _post(payload) {
     const data = {
-      "method": "post",
-      "payload": payload
+      method: "post",
+      payload: payload,
     };
 
     UrlFetchApp.fetch(BOT_URL, data);
-  
+
     return true;
   }
 }

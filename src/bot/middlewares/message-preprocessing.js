@@ -1,17 +1,9 @@
 /**
- * MessagePreprocessingMiddleware - A middleware to handle telegram messages received by Botavio.
- *
- * This class prepares the Telegram data to what Botavio handlers expects.
- * Its use case is simple and should only make simple transformations to the raw data.
- *
- * @param {object} data - The data as JS Object of the Telegram data received.
- * @constructor
+ * Middleware for preprocessing Telegram messages.
  */
-
 class MessagePreprocessingMiddleware {
   /**
    * Creates a new MessagePreprocessingMiddleware instance.
-   *
    * @param {object} data - The data as JS Object of the Telegram data received.
    */
   constructor(data) {
@@ -19,6 +11,10 @@ class MessagePreprocessingMiddleware {
     this.data = data;
   }
 
+  /**
+   * Process the Telegram message and extract relevant information.
+   * @returns {TelegramDataModel} - The processed Telegram data.
+   */
   process() {
     // Extract properties from objects using destructuring.
     const contents = this.utils.JSONParser(this.data.postData.contents);

@@ -1,7 +1,6 @@
 /**
  * A helper to do some transformations on data received from Telegram.
  */
-
 var UtilsTelegram = {
   JSONParser: function(strToParse) {
     let parsedObject;

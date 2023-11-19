@@ -14,7 +14,6 @@
 class BotavioCache {
     /**
      * Creates a new BotavioCache instance.
-     *
      * @param {Cache} cache - The native GAS CacheService object.
      */
     constructor(cache) {

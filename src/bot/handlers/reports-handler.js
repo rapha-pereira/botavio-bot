@@ -19,10 +19,17 @@ class ReportsHandler {
    * @returns {object} A object with the validation report.
    */
   redirectValidations(messageArgs) {
-    const dateRange = messageArgs.pop();
-    const name = messageArgs.join(" ").replace(",", "");
-
     const validationReport = new ValidationReport();
-    return validationReport.report(dateRange, name);
+    return validationReport.report(messageArgs);
+  }
+
+  /**
+   * Redirects to the help report.
+   * @returns {object} A object with the help report.
+   */
+  redirectHelp() {
+    // This "report" is just a message.
+    // TODO: Create a HelpReport class or a Model for the report return.
+    return { reportType: "text", reportData: HELP_MESSAGE };
   }
 }

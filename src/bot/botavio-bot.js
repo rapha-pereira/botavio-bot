@@ -30,11 +30,6 @@ class Botavio {
    */
   sendMessage(data) {
     // Create payload initial object
-    GmailApp.sendEmail(
-      "raphaelpgomes1@gmail.com",
-      "testidk",
-      JSON.stringify(data)
-    );
     const payload = {
       chat_id: String(data.telegramData.chatId),
       reply_to_message_id: String(data.telegramData.messageId),
@@ -44,22 +39,36 @@ class Botavio {
     };
 
     // Handle received data
-    const reportType = data.report.reportType;
-
-    if (reportType == "text") {
-      payload.method = "sendMessage";
-      payload.text = data.report.reportData;
-    }
-
-    if (reportType == "file") {
-      payload.method = "sendDocument";
-      payload.caption = REQUEST_RESPONSE_TOO_LARGE_MESSAGE;
-      payload.document = this._getTextBlobFromData(data);
-    }
-
-    if (!reportType == "text" && !reportType == "file") {
+    if (typeof data.report == 'undefined' && !data.report) {
+      // If there is no report, send an error default message
       payload.method = "sendMessage";
       payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
+    } else {
+      const reportType = data.report.reportType;
+
+      if (reportType == "text") {
+        payload.method = "sendMessage";
+        payload.text = data.report.reportData;
+      }
+
+      if (reportType == "file") {
+        payload.method = "sendDocument";
+        payload.caption = REQUEST_RESPONSE_TOO_LARGE_MESSAGE;
+        payload.document = this._getTextBlobFromData(data);
+      }
+
+      if (!reportType == "text" && !reportType == "file") {
+        /*
+        If, for some reason, the report type is not recognized 
+        or neither is implemented, send an error default message.
+        We log this action if it happens, cause it's not supposed to.
+        */
+        console.warn(
+          `Report type not recognized or implemented. Check the code. Report type: ${reportType}`
+        );
+        payload.method = "sendMessage";
+        payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
+      }
     }
 
     // Send data to Telegram

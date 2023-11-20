@@ -19,11 +19,8 @@ class ReportsHandler {
    * @returns {object} A object with the validation report.
    */
   redirectValidations(messageArgs) {
-    const dateRange = messageArgs.pop();
-    const name = messageArgs.join(" ").replace(",", "");
-
     const validationReport = new ValidationReport();
-    return validationReport.report(dateRange, name);
+    return validationReport.report(messageArgs);
   }
 
   /**

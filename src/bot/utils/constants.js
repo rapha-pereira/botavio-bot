@@ -59,20 +59,12 @@ const BOT_TOKEN =
   PropertiesService.getScriptProperties().getProperty("BOT_TOKEN");
 const BOT_URL = "https://api.telegram.org/bot" + BOT_TOKEN + "/";
 
-const WEBAPP_URL_PROD =
-  PropertiesService.getScriptProperties().getProperty("WEBAPP_URL_PROD");
-const WEBAPP_URL_DEV =
-  PropertiesService.getScriptProperties().getProperty("WEBAPP_URL_DEV");
-
-const BOT_DEFAULT_GROUP =
-  PropertiesService.getScriptProperties().getProperty("BOT_DEFAULT_GROUP");
-
 const HELP_MESSAGE =
-  "Olá, *senhores*. \nMeus comandos são:\n  /validacao, /vaiteraula e /help." +
-  "\nO comando /validacao precisa ser passado como: *nome, data* ou *nome* (sem filtro de data)." +
-  "\nO comando /vaiteraula não precisa de nenhum campo." +
-  "\nO comando /help mostra essa mensagem." +
-  "\n_Eu retornarei um erro caso o comando de validação seja passado sem o filtro de nome, pela grande quantidade de dados que terei que buscar._";
+  "Olá, *senhores*. \nMeus comandos são: /validacao, /vaiteraula e /help." +
+  "\n\n- O comando /validacao precisa ser passado como: *nome, data* ou *nome* (sem filtro de data)." +
+  "\n- O comando /vaiteraula não precisa de nenhum campo." +
+  "\n- O comando /help mostra essa mensagem." +
+  "\n\n_Eu retornarei um erro caso o comando de validação seja passado sem o filtro de nome, pela grande quantidade de dados que terei que buscar._";
 
 
 const CALENDAR_RESPONSE_MESSAGE = (a, b) => String(`@${a}, ${b}`);

@@ -1,6 +1,6 @@
 {
   "name": "botaviobot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A Telegram Bot for answering your queries and scooping up the juiciest IFSC Campus Caçador info! 🤖",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "pull": "clasp pull",
     "push": "clasp push",
     "open": "clasp open",
-    "deploy": "clasp deploy -i 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN --description \"$npm_package_version\"",
+    "deploy": "clasp deploy -i AKfycbwzuiDvy-vdSQsZtqk7m7EhOKpP19xX1boK4WxwWejcvqWUPFRU15M1U0Fintne8fcTdw",
     "undeploy": "clasp undeploy 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
     "list-files": "clasp list",
     "version-description": "clasp versions -i 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",

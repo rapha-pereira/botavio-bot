@@ -153,22 +153,30 @@ class ValidationReport {
 
   /**
    * Generates a report based on the provided parameters.
-   * @param {string} byDateOf - The date to filter the report by.
-   * @param {string} nameToSearch - The name to search for in the report.
+   * @param {Array} messageArgs - The message arguments.
    * @returns {undefined|Array} - The generated report or undefined if no data is available.
    */
-  report(byDateOf, nameToSearch) {
-    // Declaring necessary vars
-    const validationPersonName = this._utils.normalizeString(nameToSearch);
-
-    // If the name is empty, we return undefined since the search would be too broad.
-    if (validationPersonName == "" || validationPersonName == null) {
+  report(messageArgs) {
+    // If there's no args, we return undefined.
+    if (typeof messageArgs == "undefined" && !messageArgs) {
       return undefined;
     }
 
+    const dateRangeToSearch = messageArgs.pop();
+    const nameToSearch = messageArgs.join(" ").replace(",", "");
+
+    // If the name is empty, we return undefined since the search would be too broad.
+    if (nameToSearch == null || nameToSearch == "") {
+      return undefined;
+    }
+
+    // Declaring necessary vars
+    const validationPersonName = this._utils.normalizeString(nameToSearch);
     let validationDateStart;
+
+    // If unsuccessful on parsing (invalid BR date format), we set the date to undefined.
     try {
-      validationDateStart = this._utils.parseBRDate(byDateOf);
+      validationDateStart = this._utils.parseBRDate(dateRangeToSearch);
     } catch {
       validationDateStart = undefined;
     }

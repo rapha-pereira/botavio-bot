@@ -22,14 +22,14 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install Prettier
-        run: npm install -g prettier
+      - name: Install all needed npm modules
+        run: npm ci
+
+      - name: Run preparing util to deploy
+        run: ./prepare-deploy.sh dev
 
       - name: Lint code with Prettier
         run: npx prettier --write .
-
-      - name: Install Google Apps Script CLI
-        run: npm install -g @google/clasp
 
       - name: Decrypt clasp credentials
         run: |

@@ -60,7 +60,7 @@ const BOT_TOKEN =
 const BOT_URL = "https://api.telegram.org/bot" + BOT_TOKEN + "/";
 
 const HELP_MESSAGE =
-  "Olá, *senhores*. \nMeus comandos são: /validacao, /vaiteraula e /help. _[on: prd env]_" +
+  "Olá, *senhores*. \nMeus comandos são: /validacao, /vaiteraula e /help." +
   "\n\n- O comando /validacao precisa ser passado como: *nome, data* ou *nome* (sem filtro de data)." +
   "\n- O comando /vaiteraula não precisa de nenhum campo." +
   "\n- O comando /help mostra essa mensagem." +

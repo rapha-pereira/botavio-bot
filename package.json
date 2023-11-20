@@ -3,18 +3,9 @@
   "version": "2.0.0",
   "description": "A Telegram Bot for answering your queries and scooping up the juiciest IFSC Campus Caçador info! 🤖",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "login": "clasp login",
-    "logout": "clasp logout",
-    "clone": "clasp clone 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
-    "pull": "clasp pull",
-    "push": "clasp push",
-    "open": "clasp open",
-    "deploy": "clasp deploy -i AKfycbwzuiDvy-vdSQsZtqk7m7EhOKpP19xX1boK4WxwWejcvqWUPFRU15M1U0Fintne8fcTdw",
-    "undeploy": "clasp undeploy 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
-    "list-files": "clasp list",
-    "version-description": "clasp versions -i 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN",
-    "set-root-folder": "clasp set-root 1J8QsgxnHUifaTj0uAMprz4DYFPC8ymm4Tpy6B-vPHQdVC0cz7zoJtvUN"
+    "deploy_dev": "./prepare-deploy.sh dev && npx clasp push -f && npx clasp deploy -i AKfycby0QMWsktI7z5kB0jYsRn1DGFXGcegnLu3muPVEe6CnVoyM8jRYZf2mbUSnM3mwSijT -d \"Development\" -V dev",
+    "deploy_prd": "./prepare-deploy.sh prd && npx clasp push -f && npx clasp deploy -i AKfycbwzuiDvy-vdSQsZtqk7m7EhOKpP19xX1boK4WxwWejcvqWUPFRU15M1U0Fintne8fcTdw -d \"Production\" -V prd",
+    "lint": "prettier --write"
   },
   "repository": {
     "type": "git",
@@ -33,6 +24,7 @@
   "homepage": "https://github.com/rapha-pereira/botavio-bot#readme",
   "dependencies": {
     "@google/clasp": "^2.4.2",
-    "@types/google-apps-script": "^1.0.76"
+    "@types/google-apps-script": "^1.0.76",
+    "prettier": "^3.1.0"
   }
 }

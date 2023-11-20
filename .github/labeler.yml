@@ -1,0 +1,16 @@
+# Add 'repo' label to any root file changes
+repo:
+- '*'
+
+# Add '@domain/core' label to any change within the 'core' package
+core:
+- src/bot/middlewares/**
+- src/bot/handlers/**
+
+# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+source:
+- any: ['src/**', '!src/docs/*']
+
+# Add 'report' label to any change to reports files
+reports:
+- src/bot/services/reports/**

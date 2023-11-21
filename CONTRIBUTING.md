@@ -10,7 +10,7 @@ We love your input! We want to make contributing to this project as easy and tra
 ## Getting Started
 
 1. Ask for access to the Google Apps Script project via [Google Forms](#).
-2. Clone the BotavioBot Github repository: `git clone https://github.com/{yourusername}/BotavioBot.git`
+2. Clone the BotavioBot Github repository: `git clone https://github.com/rapha-pereira/BotavioBot.git`
 3. Install npm on your computer: [Download Node.js and npm](https://nodejs.org/en/download/)
 4. Access (cd /BotavioBot) the cloned repository folder, and run `npm ci`
 5. Run `clasp login` and log in with the account that you requested access to the GAS project.

@@ -7,19 +7,6 @@ We love your input! We want to make contributing to this project as easy and tra
 - Submitting a fix
 - Proposing new features
 
-## We Develop with Github
-
-We use Github to host code, to track issues and feature requests, as well as accept pull requests.
-
-## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html)
-
-1. Clone the repo and create your branch from `develop`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
-6. Issue that pull request!
-
 ## Getting Started
 
 1. Ask for access to the Google Apps Script project via [Google Forms](#).

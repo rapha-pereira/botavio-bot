@@ -16,39 +16,38 @@ A Telegram Bot for answering your queries and scooping up the juiciest IFSC Camp
 
 ## ⭐ Finding BotavioBot on Telegram
 
-To find Botavio on Telegram, simply type _*@BotavioBot*_ on the search box and start talking to it.
+Discover Botavio on Telegram by searching for *@BotavioBot* in the search bar and start interacting with it.
 
 ## 📖 Usage
 
-Currently, Botavio only supports three commands. They are:
+Botavio currently supports three commands:
 
 - **/help**
 - **/vaiteraula**
 - **/validacao**
 
-Those commands generate "reports" and Botavio returns the response as a message for you **:)**
+These commands generate "reports" and Botavio responds with the requested information.
 
-##### _For more information and details about the commands, type **/help** when talking to Botavio._
+_For more detailed information about these commands, type **/help** when interacting with Botavio._
 
 
 ## 📦 Technologies
 
 The technologies used to develop BotavioBot are:
-- **CLASP** _(a Google Apps Script CLI)_
+- **CLASP** _(Google Apps Script CLI)_
 - **Google Apps Script** (to run Botavio 24/7 for free!)
-- **JavaScript** _(as the main language, **as vannila as possible**)_
-- **npm** _(for controlling the packages used to develop Botavio locally on your IDE)_
+- **JavaScript**
+- **npm** 
 
 ## 🔨 Contributing
 
-On how to contribute, check: [Contributing to BotavioBot](https://github.com/rapha-pereira/BotavioBot/blob/master/CONTRIBUTING.md)
+Learn how to contribute to BotavioBot by checking out our [Contribution Guidelines](https://github.com/rapha-pereira/BotavioBot/blob/master/CONTRIBUTING.md).
 
 ## ⚖️ License
 
-On License, check: [LICENSE](https://github.com/rapha-pereira/BotavioBot/blob/master/LICENSE)
+Refer to the project's [License](https://github.com/rapha-pereira/BotavioBot/blob/master/LICENSE) for details.
 
 ## 🪪 Contact
 
-BotavioBot was created by [@rapha-pereira](https://github.com/rapha-pereira/) and he's currently the main developer of it.
-
-Contact him on: raphaelpgomes1@gmail.com
+BotavioBot was developed by [@rapha-pereira](https://github.com/rapha-pereira/).
+Contact him at raphaelpgomes1@gmail.com.

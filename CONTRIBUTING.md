@@ -28,9 +28,9 @@ We use Github to host code, to track issues and feature requests, as well as acc
 4. Access (cd /BotavioBot) the cloned repository folder, and run `npm ci`
 5. Run `clasp login` and log in with the account that you requested access to the GAS project.
 6. Always use the `develop` branch as base for your other branches.
-7. Start to code. :)
-8. To test it, run `npm run deploy_dev` on your Git Bash terminal.
-9. After the npm script run, test it on the @BotavioDevBot on Telegram.
+7. Start coding. 😊
+8. Test your changes using `npm run deploy_dev` in your Git Bash terminal.
+9. Verify your changes on @BotavioDevBot in Telegram.
 10. Submit your PR to the `develop` branch.
 
 ## Any contributions you make will be under the GNU General Public License
@@ -52,6 +52,6 @@ Great Bug Reports tend to have:
 - What you expected would happen
 - What actually happens
 
-## Use a Consistent Coding Style
+## Coding Style
 
-We're using [Prettier JavaScript Style Guide](https://prettier.io/docs/en/).
+We adhere to the [Prettier JavaScript Style Guide](https://prettier.io/docs/en/).

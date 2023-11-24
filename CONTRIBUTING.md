@@ -19,7 +19,10 @@ For any queries or assistance, feel free to create an issue on the GitHub repo.
 
 **3. Install Node.js and project dependencies**
 
-```bash
+1. Install [Node.js](https://nodejs.org/en/download) if not installed yet.
+
+2. Then access the cloned repo and install deps:
+```
    cd BotavioBot
    npm ci
 ```
@@ -39,13 +42,13 @@ For any queries or assistance, feel free to create an issue on the GitHub repo.
 
 **7. Add Bot Token to Script Properties**
 
-- In the Google Apps Script project editor, navigate to Resources > Script Properties. Add a new property named BOT_TOKEN and paste your bot token into the value field.
+- In the Google Apps Script project editor, navigate to **_Resources > Script Properties_**. Add a new property named **BOT_TOKEN** and paste your **bot token** into the value field.
 
 ## Deploying BotavioBot to Google Apps Script
 
 **1. Deploy as WebApp**
 
-- In the Google Apps Script project editor, go to Publish > Deploy as web app.
+- In the Google Apps Script project editor, go to **_Publish > Deploy_** as web app.
 - Choose "Current project's version" and select `"Execute as me"`, and set access to `"Anyone"`. Click `"Deploy"`.
 
 **2. Obtain WebApp URL**

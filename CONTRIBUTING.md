@@ -3,6 +3,7 @@
 Thank you for considering contributing to BotavioBot!
 
 To contribute, there is a relatively long tutorial. But once done, it ensures continuous and trouble-free contributions to BotavioBot.
+
 For any queries or assistance, feel free to create an issue on the GitHub repo.
 
 Follow these steps to set up and integrate your Telegram bot within the Google Apps Script.:

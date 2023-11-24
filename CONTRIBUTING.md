@@ -49,7 +49,7 @@ For any queries or assistance, feel free to create an issue on the GitHub repo.
 **1. Deploy as WebApp**
 
 - In the Google Apps Script project editor, go to **_Publish > Deploy_** as web app.
-- Choose "Current project's version" and select `"Execute as me"`, and set access to `"Anyone"`. Click `"Deploy"`.
+- Choose `"Current project's version"` and select `"Execute as me"`, and set access to `"Anyone"`. Click `"Deploy"`.
 
 **2. Obtain WebApp URL**
 

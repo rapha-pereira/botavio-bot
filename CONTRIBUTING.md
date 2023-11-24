@@ -10,7 +10,7 @@ For any queries or assistance, feel free to create an issue on the GitHub repo.
 
 **1. Fork the Repository**
 
-- Click on the "Fork" button at the top-right corner of the [BotavioBot repository](link-to-your-repo) to create your fork.
+- Click on the "Fork" button at the top-right corner of the [BotavioBot repository](https://github.com/rapha-pereira/BotavioBot/) to create your fork.
 
 **2. Access the Repository via Command Line**
 

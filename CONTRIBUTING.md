@@ -1,43 +1,68 @@
-# Contributing to BotavioBot <img src="https://i.ibb.co/pXhChFY/151ac49a-3151-432c-9e3b-5f6e02108afc.png" width="50">
+# Contributing to BotavioBot project <img src="https://i.ibb.co/pXhChFY/151ac49a-3151-432c-9e3b-5f6e02108afc.png" width="50">
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+Thank you for considering contributing to BotavioBot!
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
+To contribute, there is a relatively long tutorial. But once done, it ensures continuous and trouble-free contributions to BotavioBot.
+For any queries or assistance, feel free to create an issue on the GitHub repo.
 
-## Getting Started
+Follow these steps to set up and integrate your Telegram bot within the Google Apps Script.:
 
-1. Ask for access to the Google Apps Script project via [Google Forms](#).
-2. Clone the BotavioBot Github repository: `git clone https://github.com/rapha-pereira/BotavioBot.git`
-3. Install npm on your computer: [Download Node.js and npm](https://nodejs.org/en/download/)
-4. Access (cd /BotavioBot) the cloned repository folder, and run `npm ci`
-5. Run `clasp login` and log in with the account that you requested access to the GAS project.
-6. Always use the `develop` branch as base for your other branches.
-7. Start coding. 😊
-8. Test your changes using `npm run deploy_dev` in your Git Bash terminal.
-9. Verify your changes on @BotavioDevBot in Telegram.
-10. Submit your PR to the `develop` branch.
+## Setup
 
-## Any contributions you make will be under the GNU General Public License
+**1. Fork the Repository**
 
-In short, when you submit code changes, your submissions are understood to be under the same [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html) that covers the project. Feel free to contact the maintainers if that's a concern.
+- Click on the "Fork" button at the top-right corner of the [BotavioBot repository](link-to-your-repo) to create your fork.
 
-## Report bugs using Github's [issues](https://github.com/rapha-pereira/BotavioBot/issues)
+**2. Access the Repository via Command Line**
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/yourusername/BotavioBot/issues/new); it's that easy!
+- Open Terminal or CMD (Windows).
+- Use `git clone` followed by your forked repository's URL to clone it to your local machine.
 
-## Write bug reports with detail, background, and sample code
+**3. Install Node.js and project dependencies**
 
-Great Bug Reports tend to have:
+```bash
+   cd BotavioBot
+   npm ci
+```
 
-- A quick summary and/or background
-- Steps to reproduce
-- Be specific!
-- Give sample code if you can.
-- What you expected would happen
-- What actually happens
+**4. Enable Google Apps Script API**
+
+- Ensure Google Apps Script API is enabled in your Google Cloud Console. [Click on this to do it.](https://script.google.com/home/usersettings)
+
+**5. Logging into Clasp and Creating Apps Script Project**
+
+- Log into Clasp with your personal account using the command line. [See Clasp docs for how to do it.](https://developers.google.com/apps-script/guides/clasp)
+- Create an Apps Script project within the cloned repository using Clasp or using the UI by pushing the repository to the project.
+
+**6. Create a Telegram Bot**
+
+- Go to the Telegram [BotFather](https://telegram.me/BotFather) and initiate a conversation. Follow the instructions to create a new bot and obtain your bot token.
+
+**7. Add Bot Token to Script Properties**
+
+- In the Google Apps Script project editor, navigate to Resources > Script Properties. Add a new property named BOT_TOKEN and paste your bot token into the value field.
+
+## Deploying BotavioBot to Google Apps Script
+
+**1. Deploy as WebApp**
+
+- In the Google Apps Script project editor, go to Publish > Deploy as web app.
+- Choose "Current project's version" and select `"Execute as me"`, and set access to `"Anyone"`. Click `"Deploy"`.
+
+**2. Obtain WebApp URL**
+
+- Copy the web app URL provided in the deployment confirmation dialog. This URL will be used to set the Telegram bot webhook.
+
+## Setting Telegram Bot Webhook
+
+**1. Set Webhook URL**
+
+- All you have to do is to call the setWebHook method in the Telegram Bot API via the following url:
+https://api.telegram.org/bot{my_bot_token}/setWebhook?url={url_to_send_updates_to}
+
+**2. Verify Webhook**
+
+- Send a supported command, such as /help, to your Telegram bot. If the bot responds, the webhook has been successfully set up.
 
 ## Coding Style
 

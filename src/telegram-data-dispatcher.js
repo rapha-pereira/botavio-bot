@@ -3,23 +3,28 @@
  * @param {Object} e - The event object containing the request details.
  */
 function doPost(e) {
-  // Get Botavio queue to wait for any other executions in progress
-  const queue = new BotavioQueue();
+  // Security check - https://github.com/rapha-pereira/BotavioBot/issues/22
+  const securityChecker = SecurityChecker;
 
-  // If the queue is free, execute the request
-  if (queue.isFreeQueue()) {
-    // Calls Botavio and webhook handler
-    const botavio = new Botavio();
+  if (securityChecker.isTelegramWebhook(e)) {
+    // Get Botavio queue to wait for any other executions in progress
+    const queue = new BotavioQueue();
 
-    const handler = new WebhookHandler(e);
-    const response = handler.handleWebhook();
+    // If the queue is free, execute the request
+    if (queue.isFreeQueue()) {
+      // Calls Botavio and webhook handler
+      const botavio = new Botavio();
 
-    // Send response to Telegram if it exists
-    if (response != undefined) {
-      botavio.sendMessage(response);
+      const handler = new WebhookHandler(e);
+      const response = handler.handleWebhook();
+
+      // Send response to Telegram if it exists
+      if (response != undefined) {
+        botavio.sendMessage(response);
+      }
+
+      // Release the queue, freeing it for other executions
+      queue.releaseQueue();
     }
-
-    // Release the queue, freeing it for other executions
-    queue.releaseQueue();
   }
 }

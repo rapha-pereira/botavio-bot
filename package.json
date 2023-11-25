@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "A Telegram Bot for answering your queries and scooping up the juiciest IFSC Campus Caçador info! 🤖",
   "scripts": {
-    "deploy_dev": "bash ./prepare-deploy.sh dev && npx clasp push -f && npx clasp deploy -i AKfycbzdhQgIbXsNgJEW-51W2NgFbkg-RcHxPNBaAoL5zswGserNmJpkH8Q7oqInrnfF_bXg -d \"Development\"",
+    "deploy_dev": "bash ./prepare-deploy.sh dev && npx clasp push -f && npx clasp deploy -i AKfycby0QMWsktI7z5kB0jYsRn1DGFXGcegnLu3muPVEe6CnVoyM8jRYZf2mbUSnM3mwSijT -d \"Development\"",
     "deploy_prd": "bash ./prepare-deploy.sh prd && npx clasp push -f && npx clasp deploy -i AKfycbwzuiDvy-vdSQsZtqk7m7EhOKpP19xX1boK4WxwWejcvqWUPFRU15M1U0Fintne8fcTdw -d \"Production\"",
     "lint": "prettier --write"
   },

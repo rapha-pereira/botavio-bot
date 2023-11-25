@@ -55,8 +55,6 @@ const REPORTS__REQUEST_VALIDATION_SHEET_NAME = "Visualização";
 const REPORTS__REQUEST_VALIDATION_TIMESTAMP_COL_NAME = "Carimbo de data/hora";
 
 // Botavio specifics constants
-const WEBHOOK_SECRET_TOKEN =
-  PropertiesService.getScriptProperties().getProperty("WEBHOOK_SECRET_TOKEN");
 const BOT_TOKEN =
   PropertiesService.getScriptProperties().getProperty("BOT_TOKEN");
 const BOT_URL = "https://api.telegram.org/bot" + BOT_TOKEN + "/";
@@ -67,6 +65,7 @@ const HELP_MESSAGE =
   "\n- O comando /vaiteraula não precisa de nenhum campo." +
   "\n- O comando /help mostra essa mensagem." +
   "\n\n_Eu retornarei um erro caso o comando de validação seja passado sem o filtro de nome, pela grande quantidade de dados que terei que buscar._";
+
 
 const CALENDAR_RESPONSE_MESSAGE = (a, b) => String(`@${a}, ${b}`);
 const REQUEST_VALIDATION_RESPONSE_MESSAGE = (a, b, c, d, e, f) =>

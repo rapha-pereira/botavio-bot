@@ -49,6 +49,15 @@ class WebhookHandler {
       case "/help":
         report = reportsHandler.redirectHelp();
         return new BotavioRequestModel(data, command, report);
+      
+      case "/start":
+        /*
+          This is needed for new users that interacts with Botavio.
+          Telegram bound users to send /start in their first interaction with the Bot.
+          Botavio should understand /start the same as /help.
+        */
+        report = reportsHandler.redirectHelp();
+        return new BotavioRequestModel(data, command, report);
 
       default:
         // Handle unknown commands.

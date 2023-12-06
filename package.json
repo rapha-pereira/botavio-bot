@@ -1,6 +1,6 @@
 {
   "name": "botaviobot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Telegram Bot for answering your queries and scooping up the juiciest IFSC Campus Caçador info! 🤖",
   "scripts": {
     "deploy_dev": "bash ./prepare-deploy.sh dev && npx clasp push -f && npx clasp deploy -i AKfycbzdhQgIbXsNgJEW-51W2NgFbkg-RcHxPNBaAoL5zswGserNmJpkH8Q7oqInrnfF_bXg -d \"Development\"",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/rapha-pereira/botavio-bot/issues"
   },
-  "homepage": "https://github.com/rapha-pereira/botavio-bot#readme",
+  "homepage": "https://github.com/rapha-pereira/botavio-bot",
   "dependencies": {
     "@google/clasp": "^2.4.2",
     "@types/google-apps-script": "^1.0.76",

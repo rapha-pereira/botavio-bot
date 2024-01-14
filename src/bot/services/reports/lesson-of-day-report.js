@@ -20,10 +20,13 @@ class LessonOfDayReport {
   _getTodayCellColor() {
     let currentMonthRow;
 
-    const currentMonthStr = REPORTS__CALENDAR_MONTH_INT_TO_STR[this._dateSentinel["actMonth"]];
+    const currentMonthStr =
+      REPORTS__CALENDAR_MONTH_INT_TO_STR[this._dateSentinel["actMonth"]];
     const currentDayInt = this._dateSentinel["actDay"];
-    const currentMonthRange = REPORTS__CALENDAR_MONTH_CELLS_RANGE[currentMonthStr];
-    const currentMonthValues = REPORTS__CALENDAR_SHEET.getRange(currentMonthRange).getValues();
+    const currentMonthRange =
+      REPORTS__CALENDAR_MONTH_CELLS_RANGE[currentMonthStr];
+    const currentMonthValues =
+      REPORTS__CALENDAR_SHEET.getRange(currentMonthRange).getValues();
     const columnOfCurrentDay = currentMonthValues[0].indexOf(currentDayInt) + 1; // +1 because range starts at 0
 
     if (currentMonthRange.split(":")[0].length > 2) {

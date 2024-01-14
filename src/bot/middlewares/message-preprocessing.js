@@ -31,7 +31,7 @@ class MessagePreprocessingMiddleware {
       userFirstName, // String
       messageText, // String
       replyMessageId, // Number (Integer)
-      this.data // Object
+      this.data, // Object
     );
   }
 }

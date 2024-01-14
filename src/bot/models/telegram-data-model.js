@@ -21,7 +21,7 @@ class TelegramDataModel {
     userFirstName,
     messageText,
     replyMessageId,
-    rawData
+    rawData,
   ) {
     this.contents = contents;
     this.chatId = chatId;

@@ -24,7 +24,7 @@ class ValidationReport {
     array,
     isOnlyFilter,
     validationPersonName,
-    validationDateStart
+    validationDateStart,
   ) {
     /*
       In this .filter, we filter validation requests that contains
@@ -37,7 +37,7 @@ class ValidationReport {
           data[0] != "" &&
           data[0] != REPORTS__REQUEST_VALIDATION_TIMESTAMP_COL_NAME && // Filter validation sheets header
           this._utils.normalizeString(data[1]).includes(validationPersonName) ==
-            true
+            true,
       );
     } else {
       /*
@@ -54,12 +54,12 @@ class ValidationReport {
             true &&
           (datesUtil.compare(
             this._utils.parseBRDate(data[0]),
-            validationDateStart
+            validationDateStart,
           ) == 1 ||
             datesUtil.compare(
               this._utils.parseBRDate(data[0]),
-              validationDateStart
-            ) == 0)
+              validationDateStart,
+            ) == 0),
       );
     }
   }
@@ -79,12 +79,16 @@ class ValidationReport {
           validationData,
           false,
           validationPersonName,
-          validationDateStart
-        )
+          validationDateStart,
+        ),
       );
     } else {
       return this._handleValidationDataSize(
-        this._validationsArrayFilter(validationData, true, validationPersonName)
+        this._validationsArrayFilter(
+          validationData,
+          true,
+          validationPersonName,
+        ),
       );
     }
   }
@@ -104,7 +108,7 @@ class ValidationReport {
         {
           valueRenderOption: "UNFORMATTED_VALUE",
           dateTimeRenderOption: "FORMATTED_STRING",
-        }
+        },
       );
 
       return validationSheetsData["values"];
@@ -127,11 +131,11 @@ class ValidationReport {
         x[2], // Validation course
         x[4], // Validation type
         x[5], // Validation subject to validate
-        x[8] // Validation status
-      )
+        x[8], // Validation status
+      ),
     );
     const validationsDataString = validationsDataMapped.join(
-      "\n-------------------------\n"
+      "\n-------------------------\n",
     );
 
     // If the data is small, we send it as a text type.
@@ -187,7 +191,7 @@ class ValidationReport {
       return this._findValidations(
         validationsData,
         validationPersonName,
-        validationDateStart
+        validationDateStart,
       );
     }
 

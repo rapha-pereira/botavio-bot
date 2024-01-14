@@ -99,7 +99,7 @@ class BotavioCache {
       const actualType = typeof value;
       if (actualType !== type) {
         throw new Error(
-          `Value type mismatch. Expected: ${type}, Actual: ${actualType}`
+          `Value type mismatch. Expected: ${type}, Actual: ${actualType}`,
         );
       }
     }
@@ -159,7 +159,7 @@ class BotavioCache {
     }
     if (type !== valueDescriptor.type) {
       throw new Error(
-        `Value type mismatch. Expected: ${type}, Actual: ${valueDescriptor.type}`
+        `Value type mismatch. Expected: ${type}, Actual: ${valueDescriptor.type}`,
       );
     }
     this.mergeLargeValue(valueDescriptor);

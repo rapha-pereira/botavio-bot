@@ -19,7 +19,7 @@ var Utils = {
 
     if (dateTimeParts.length > 2) {
       throw new Error(
-        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'."
+        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.",
       );
     }
 
@@ -31,7 +31,7 @@ var Utils = {
 
     if (dateParts.length !== 3 || timeParts.length !== 3) {
       throw new Error(
-        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'."
+        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.",
       );
     }
 
@@ -51,7 +51,7 @@ var Utils = {
       isNaN(seconds)
     ) {
       throw new Error(
-        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'."
+        "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.",
       );
     }
 
@@ -68,7 +68,7 @@ var Utils = {
     let actualDateFormatedString = Utilities.formatDate(
       actualDate,
       "Americas_Sao Paulo",
-      "dd/MM/yyyy"
+      "dd/MM/yyyy",
     );
 
     return {
@@ -97,7 +97,7 @@ var Utils = {
     return Utilities.formatDate(
       new Date(),
       "Americas_Sao Paulo",
-      "dd_MM_yyyy_HH_mm_ss"
+      "dd_MM_yyyy_HH_mm_ss",
     );
   },
 };
@@ -117,14 +117,14 @@ var datesUtil = {
     return d.constructor === Date
       ? d
       : d.constructor === Array
-      ? new Date(d[0], d[1] - 1, d[2])
-      : d.constructor === Number
-      ? new Date(d)
-      : d.constructor === String
-      ? new Date(d)
-      : typeof d === "object"
-      ? new Date(d.year, d.month, d.date)
-      : NaN;
+        ? new Date(d[0], d[1] - 1, d[2])
+        : d.constructor === Number
+          ? new Date(d)
+          : d.constructor === String
+            ? new Date(d)
+            : typeof d === "object"
+              ? new Date(d.year, d.month, d.date)
+              : NaN;
   },
   compare: function (a, b) {
     // Compare two dates (could be of any type supported by the convert

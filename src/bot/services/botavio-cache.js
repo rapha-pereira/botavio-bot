@@ -14,191 +14,70 @@
 class BotavioCache {
   /**
    * Creates a new BotavioCache instance.
-   * @param {Cache} cache - The native GAS CacheService object.
+   * 
    */
-  constructor(cache) {
-    this.cache_ = cache;
+  constructor() {
+    this._cache = CacheService.getScriptCache();
   }
 
-  // Public GAS CacheService methods
-  put(key, value, ttl) {
-    this.putString(key, value, ttl);
-  }
-
-  get(key) {
-    return this.getString(key);
-  }
-
-  remove(key) {
-    const valueDescriptor = this.getValueDescriptor(key);
-    if (valueDescriptor.keys) {
-      for (let i = 0; i < valueDescriptor.keys.length; i++) {
-        const k = valueDescriptor.keys[i];
-        this.remove_(k);
-      }
+  // Public methods
+  /**
+   * Put a Botavio request into cache.
+   * @param {BotavioRequestModel} model - Botavio request model. 
+   */
+  put(model) {
+    if (typeof model != BotavioRequestModel) {
+      throw Error("A wrong data type was passed to CacheService.")
     }
-    this.remove_(key);
+    else {
+      this._handlePut(model)
+    }
+  }
+
+  /**
+   * Put a Botavio request into cache.
+   * @param {BotavioRequestModel} model - Botavio request model. 
+   * @param {boolean} castReturnToModel - If the cache return, if not null, should be casted to BotavioRequestModel 
+  */
+  get(key, castReturnToModel) {
+    const getData = this._handleGet(key);
+    if (getData != null && castReturnToModel === true) {
+      return 
+    }
   }
 
   // Private methods
-  putString(key, value, ttl) {
-    const type = "string";
-    this.ensureValueType(value, type);
-    this.putValue(key, value, type, ttl);
+  /**
+   * @private
+   * @param {BotavioRequestModel} model
+   * @returns {void}
+   */
+  _handlePut(model) {
+    const expInSeconds = 21600; // 6 hours
+    const key = model.telegramData.messageText
+    const value = JSON.stringify(model)
+    return this._cache.put(
+      key,
+      value,
+      expInSeconds
+    );
   }
 
-  getString(key) {
-    const value = this.getValue(key, "string");
-    return value;
+  /**
+   * @private
+   * @param {TelegramDataModel} model
+   * @returns {string | null}
+   */
+  _handleGet(model) {
+    return this._cache.get(model.messageText);
   }
 
-  putNumber(key, value, ttl) {
-    const type = "number";
-    this.ensureValueType(value, type);
-    this.putValue(key, value, type, ttl);
-  }
-
-  getNumber(key) {
-    const value = this.getValue(key, "number");
-    return value;
-  }
-
-  putBoolean(key, value, ttl) {
-    const type = "boolean";
-    this.ensureValueType(value, type);
-    this.putValue(key, value, type, ttl);
-  }
-
-  getBoolean(key) {
-    const value = this.getValue(key, "boolean");
-    return value;
-  }
-
-  putObject(key, value, ttl, stringify) {
-    stringify = stringify || JSON.stringify;
-    const type = "object";
-    this.ensureValueType(value, type);
-    const sValue = value === null ? null : stringify(value);
-    this.putValue(key, sValue, type, ttl);
-  }
-
-  getObject(key, parse) {
-    parse = parse || JSON.parse;
-    const sValue = this.getValue(key, "object");
-    const value = sValue === null ? null : parse(sValue);
-    return value;
-  }
-
-  getLastUpdated(key) {
-    const valueDescriptor = this.getValueDescriptor(key);
-    return valueDescriptor === null ? null : new Date(valueDescriptor.time);
-  }
-
-  ensureValueType(value, type) {
-    if (value !== null) {
-      const actualType = typeof value;
-      if (actualType !== type) {
-        throw new Error(
-          `Value type mismatch. Expected: ${type}, Actual: ${actualType}`,
-        );
-      }
-    }
-  }
-
-  ensureKeyType(key) {
-    if (typeof key !== "string") {
-      throw new Error("Key must be a string value");
-    }
-  }
-
-  createValueDescriptor(value, type, ttl) {
-    return {
-      value: value,
-      type: type,
-      ttl: ttl,
-      time: new Date().getTime(),
-    };
-  }
-
-  putValue(key, value, type, ttl) {
-    this.ensureKeyType(key);
-    const valueDescriptor = this.createValueDescriptor(value, type, ttl);
-    this.splitLargeValue(key, valueDescriptor);
-    const sValueDescriptor = JSON.stringify(valueDescriptor);
-    this.put_(key, sValueDescriptor, ttl);
-  }
-
-  put_(key, value, ttl) {
-    if (ttl) {
-      this.cache_.put(key, value, ttl);
-    } else {
-      this.cache_.put(key, value);
-    }
-  }
-
-  get_(key) {
-    return this.cache_.get(key);
-  }
-
-  remove_(key) {
-    return this.cache_.remove(key);
-  }
-
-  getValueDescriptor(key) {
-    this.ensureKeyType(key);
-    const sValueDescriptor = this.get_(key);
-    const valueDescriptor =
-      sValueDescriptor === null ? null : JSON.parse(sValueDescriptor);
-    return valueDescriptor;
-  }
-
-  getValue(key, type) {
-    const valueDescriptor = this.getValueDescriptor(key);
-    if (valueDescriptor === null) {
-      return null;
-    }
-    if (type !== valueDescriptor.type) {
-      throw new Error(
-        `Value type mismatch. Expected: ${type}, Actual: ${valueDescriptor.type}`,
-      );
-    }
-    this.mergeLargeValue(valueDescriptor);
-    return valueDescriptor.value;
-  }
-
-  mergeLargeValue(valueDescriptor) {
-    if (valueDescriptor.keys) {
-      let value = "";
-      for (let i = 0; i < valueDescriptor.keys.length; i++) {
-        const k = valueDescriptor.keys[i];
-        const v = this.get_(k);
-        value += v;
-      }
-      valueDescriptor.value = value;
-      valueDescriptor.keys = undefined;
-    }
-  }
-
-  splitLargeValue(key, valueDescriptor) {
-    const DESCRIPTOR_MARGIN = 2000;
-    const MAX_STR_LENGTH = (128 * 1024) / 2 - DESCRIPTOR_MARGIN;
-    let value = valueDescriptor.value;
-    if (
-      value !== null &&
-      typeof value === "string" &&
-      value.length > MAX_STR_LENGTH
-    ) {
-      Logger.log(`Splitting string value of length: ${value.length}`);
-      const keys = valueDescriptor.keys || [];
-      do {
-        const k = `$$$${key}${keys.length}`;
-        const v = value.substring(0, MAX_STR_LENGTH);
-        value = value.substring(MAX_STR_LENGTH);
-        keys.push(k);
-        this.put_(k, v, valueDescriptor.ttl);
-      } while (value.length > 0);
-      valueDescriptor.value = undefined;
-      valueDescriptor.keys = keys;
-    }
+  /**
+   * 
+   * @param {string | null} getData 
+   * @param {Object} modelToParse 
+   */
+  _parseGetDataToModel(getData, modelToParse) {
+    return Object.assign(new modelToParse, JSON.parse(getData))
   }
 }

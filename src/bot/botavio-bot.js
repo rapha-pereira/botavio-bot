@@ -39,7 +39,7 @@ class Botavio {
     };
 
     // Handle received data
-    if (typeof data.report == 'undefined' && !data.report) {
+    if (typeof data.report == "undefined" && !data.report) {
       // If there is no report, send an error default message
       payload.method = "sendMessage";
       payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
@@ -64,7 +64,7 @@ class Botavio {
         We log this action if it happens, cause it's not supposed to.
         */
         console.warn(
-          `Report type not recognized or implemented. Check the code. Report type: ${reportType}`
+          `Report type not recognized or implemented. Check the code. Report type: ${reportType}`,
         );
         payload.method = "sendMessage";
         payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
@@ -86,7 +86,7 @@ class Botavio {
     return Utilities.newBlob(
       data.report.reportData,
       "text/plain",
-      `botavio_data_${currentTimestamp}.txt`
+      `botavio_data_${currentTimestamp}.txt`,
     );
   }
 

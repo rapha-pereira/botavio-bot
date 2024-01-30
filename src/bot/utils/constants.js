@@ -1,6 +1,6 @@
 // Reports specifics constants
 const REPORTS__CALENDAR_SS = SpreadsheetApp.openById(
-  "1NFmwUF8YNz8Xph58AyMweLKYMA-PEQnaGPUKJg_GjZo"
+  "1NFmwUF8YNz8Xph58AyMweLKYMA-PEQnaGPUKJg_GjZo",
 );
 const REPORTS__CALENDAR_SHEET = REPORTS__CALENDAR_SS.getSheetByName("db");
 const REPORTS__CALENDAR_HEX_MAP = {
@@ -76,7 +76,7 @@ const REQUEST_VALIDATION_RESPONSE_MESSAGE = (a, b, c, d, e, f) =>
     \n*Curso: *${c}
     \n*Solicitação: *${d}
     \n*Matéria a ser validada: *${e}
-    \n*Status da solicitação: *${f}`
+    \n*Status da solicitação: *${f}`,
   );
 const REQUEST_RESPONSE_TOO_LARGE_MESSAGE =
   "Fala tu!\nOs dados solicitados são muito grandes, por isso, segue em anexo os dados em um arquivo txt.";

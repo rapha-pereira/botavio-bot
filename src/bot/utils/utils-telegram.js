@@ -1,8 +1,8 @@
 /**
  * A helper to do some transformations on data received from Telegram.
  */
-var UtilsTelegram = {
-  JSONParser: function (strToParse) {
+const UtilsTelegram = {
+  JSONParser(strToParse) {
     let parsedObject;
     try {
       parsedObject = JSON.parse(strToParse);
@@ -13,16 +13,16 @@ var UtilsTelegram = {
     return parsedObject;
   },
 
-  getChatId: function (messageObj) {
+  getChatId(messageObj) {
     return messageObj.message.chat.id;
   },
 
-  getReplyMessageId: function (messageObj) {
+  getReplyMessageId(messageObj) {
     return messageObj.message.message_id;
   },
 
-  normalizeMessage: function (str) {
+  normalizeMessage(str) {
     // Remove everything after @ and @ itself
-    return str.trim().toLowerCase().replace(/@.*/, "");
+    return str.trim().toLowerCase().replace(/@.*/, '');
   },
 };

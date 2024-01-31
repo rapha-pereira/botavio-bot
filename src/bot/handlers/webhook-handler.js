@@ -18,11 +18,10 @@ class WebhookHandler {
   handleWebhook() {
     const telegramData = this._middleware.process();
 
-    if (!telegramData.messageText.startsWith("/")) {
+    if (!telegramData.messageText.startsWith('/')) {
       return undefined;
-    } else {
-      return telegramData;
     }
+    return telegramData;
   }
 
   /**
@@ -31,25 +30,25 @@ class WebhookHandler {
    * @returns {BotavioRequestModel} - The Botavio request model.
    */
   processMessage(data) {
-    const [command, ...args] = data.messageText.split(" ");
+    const [command, ...args] = data.messageText.split(' ');
 
     const reportsHandler = new ReportsHandler();
-    let report = undefined;
+    let report;
 
     switch (command) {
-      case "/vaiteraula":
+      case '/vaiteraula':
         report = reportsHandler.redirectLessonOfDay();
         return new BotavioRequestModel(data, command, report);
 
-      case "/validacao":
+      case '/validacao':
         report = reportsHandler.redirectValidations(args);
         return new BotavioRequestModel(data, command, report);
 
-      case "/help":
+      case '/help':
         report = reportsHandler.redirectHelp();
         return new BotavioRequestModel(data, command, report);
 
-      case "/start":
+      case '/start':
         /*
           This is needed for new users that interacts with Botavio.
           Telegram bound users to send /start in their first interaction with the Bot.
@@ -60,7 +59,7 @@ class WebhookHandler {
 
       default:
         // Handle unknown commands.
-        return new BotavioRequestModel(data, "unknown", report);
+        return new BotavioRequestModel(data, 'unknown', report);
     }
   }
 }

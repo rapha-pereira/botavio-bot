@@ -16,7 +16,7 @@ class BotavioQueue {
    * @returns {boolean} Returns true if the queue is free, false otherwise.
    */
   isFreeQueue() {
-    let freeQueue = this.lockService.tryLock(30000);
+    const freeQueue = this.lockService.tryLock(30000);
 
     if (!freeQueue) {
       return false;

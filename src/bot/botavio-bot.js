@@ -17,7 +17,7 @@ class Botavio {
    */
   setWebhook(webhook) {
     const payload = {
-      method: "setWebhook",
+      method: 'setWebhook',
       url: webhook,
     };
     return this._post(payload);
@@ -33,40 +33,40 @@ class Botavio {
     const payload = {
       chat_id: String(data.telegramData.chatId),
       reply_to_message_id: String(data.telegramData.messageId),
-      parse_mode: "Markdown",
+      parse_mode: 'Markdown',
       disable_web_page_preview: true,
       disable_notification: false,
     };
 
     // Handle received data
-    if (typeof data.report == "undefined" && !data.report) {
+    if (typeof data.report === 'undefined' && !data.report) {
       // If there is no report, send an error default message
-      payload.method = "sendMessage";
+      payload.method = 'sendMessage';
       payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
     } else {
-      const reportType = data.report.reportType;
+      const { reportType } = data.report;
 
-      if (reportType == "text") {
-        payload.method = "sendMessage";
+      if (reportType == 'text') {
+        payload.method = 'sendMessage';
         payload.text = data.report.reportData;
       }
 
-      if (reportType == "file") {
-        payload.method = "sendDocument";
+      if (reportType == 'file') {
+        payload.method = 'sendDocument';
         payload.caption = REQUEST_RESPONSE_TOO_LARGE_MESSAGE;
         payload.document = this._getTextBlobFromData(data);
       }
 
-      if (!reportType == "text" && !reportType == "file") {
+      if (!reportType == 'text' && !reportType == 'file') {
         /*
-        If, for some reason, the report type is not recognized 
+        If, for some reason, the report type is not recognized
         or neither is implemented, send an error default message.
         We log this action if it happens, cause it's not supposed to.
         */
         console.warn(
           `Report type not recognized or implemented. Check the code. Report type: ${reportType}`,
         );
-        payload.method = "sendMessage";
+        payload.method = 'sendMessage';
         payload.text = REQUEST_UNKNOWN_ERROR_MESSAGE;
       }
     }
@@ -85,7 +85,7 @@ class Botavio {
     const currentTimestamp = this._utils.actualTimeStamp();
     return Utilities.newBlob(
       data.report.reportData,
-      "text/plain",
+      'text/plain',
       `botavio_data_${currentTimestamp}.txt`,
     );
   }
@@ -98,8 +98,8 @@ class Botavio {
    */
   _post(payload) {
     const data = {
-      method: "post",
-      payload: payload,
+      method: 'post',
+      payload,
     };
 
     UrlFetchApp.fetch(BOT_URL, data);

@@ -30,6 +30,6 @@ class ReportsHandler {
   redirectHelp() {
     // This "report" is just a message.
     // TODO: Create a HelpReport class or a Model for the report return.
-    return { reportType: "text", reportData: HELP_MESSAGE };
+    return { reportType: 'text', reportData: HELP_MESSAGE };
   }
 }

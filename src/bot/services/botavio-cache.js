@@ -17,11 +17,10 @@ class BotavioCache {
    * @param {BotavioRequestModel} model - Botavio request model.
    */
   put(model) {
-    if (typeof model != BotavioRequestModel) {
-      throw Error("A wrong data type was passed to CacheService.")
-    }
-    else {
-      this._handlePut(model)
+    if (typeof model !== BotavioRequestModel) {
+      throw Error('A wrong data type was passed to CacheService.');
+    } else {
+      this._handlePut(model);
     }
   }
 
@@ -35,9 +34,8 @@ class BotavioCache {
     if (getData != null && castReturnToModel === true) {
       return this._parseStrToModel(getData, BotavioRequestModel);
     }
-    else {
-      return getData
-    }
+
+    return getData;
   }
 
   // Private methods
@@ -47,14 +45,14 @@ class BotavioCache {
    * @returns {void}
    */
   _handlePut(model) {
-    GmailApp.sendEmail("raphael.pg@aluno.ifsc.edu.br", "BotavioCache", JSON.stringify(model))
+    GmailApp.sendEmail('raphael.pg@aluno.ifsc.edu.br', 'BotavioCache', JSON.stringify(model));
     const expInSeconds = 21600; // 6 hours
     const key = this._createKey(model);
-    const value = JSON.stringify(model)
+    const value = JSON.stringify(model);
     return this._cache.put(
       key,
       value,
-      expInSeconds
+      expInSeconds,
     );
   }
 
@@ -74,10 +72,10 @@ class BotavioCache {
    * @returns {string}
    */
   _createKey(model) {
-    if (typeof model == TelegramDataModel) {
+    if (typeof model === TelegramDataModel) {
       return model.messageText;
     }
-    if (typeof model == BotavioRequestModel) {
+    if (typeof model === BotavioRequestModel) {
       return model.telegramData.messageText;
     }
   }
@@ -88,6 +86,6 @@ class BotavioCache {
    * @param {Object} modelToParse
    */
   _parseStrToModel(getData, modelToParse) {
-    return Object.assign(new modelToParse, JSON.parse(getData))
+    return Object.assign(new modelToParse(), JSON.parse(getData));
   }
 }

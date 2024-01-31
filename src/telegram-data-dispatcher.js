@@ -14,15 +14,15 @@ function doPost(e) {
 
     const data = handler.handleWebhook();
     if (data != undefined) {
-        const botavioRequestModelCached = cache.get(data, true);
-        // If the request is not in cache, process it and cache it
-        if (botavioRequestModelCached == null) {
-          const botavioRequestModel = handler.processMessage(data);
-          botavio.sendMessage(botavioRequestModel);
-          cache.put(botavioRequestModel);
-        } else {
-          // If the request is in cache, send the cached response
-          botavio.sendMessage(botavioResponseModelCached);
+      const botavioRequestModelCached = cache.get(data, true);
+      // If the request is not in cache, process it and cache it
+      if (botavioRequestModelCached == null) {
+        const botavioRequestModel = handler.processMessage(data);
+        botavio.sendMessage(botavioRequestModel);
+        cache.put(botavioRequestModel);
+      } else {
+        // If the request is in cache, send the cached response
+        botavio.sendMessage(botavioResponseModelCached);
       }
     }
 

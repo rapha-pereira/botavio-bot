@@ -1,21 +1,20 @@
 /**
  * A helper to do some utility stuff.
  */
-var Utils = {
-  checkIfArray: function (obj) {
+const Utils = {
+  checkIfArray(obj) {
     if (Array.isArray(obj)) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
 
-  normalizeString: function (input) {
+  normalizeString(input) {
     return input.trim().toLowerCase();
   },
 
-  parseBRDate: function (input) {
-    const dateTimeParts = input.split(" ");
+  parseBRDate(input) {
+    const dateTimeParts = input.split(' ');
 
     if (dateTimeParts.length > 2) {
       throw new Error(
@@ -24,10 +23,10 @@ var Utils = {
     }
 
     const datePart = dateTimeParts[0];
-    const timePart = dateTimeParts[1] || "00:00:00";
+    const timePart = dateTimeParts[1] || '00:00:00';
 
-    const dateParts = datePart.split("/");
-    const timeParts = timePart.split(":");
+    const dateParts = datePart.split('/');
+    const timeParts = timePart.split(':');
 
     if (dateParts.length !== 3 || timeParts.length !== 3) {
       throw new Error(
@@ -43,12 +42,12 @@ var Utils = {
     const seconds = parseInt(timeParts[2]);
 
     if (
-      isNaN(day) ||
-      isNaN(month) ||
-      isNaN(year) ||
-      isNaN(hours) ||
-      isNaN(minutes) ||
-      isNaN(seconds)
+      isNaN(day)
+      || isNaN(month)
+      || isNaN(year)
+      || isNaN(hours)
+      || isNaN(minutes)
+      || isNaN(seconds)
     ) {
       throw new Error(
         "Invalid date-time format. Please use 'dd/mm/yyyy HH:mm:ss'.",
@@ -60,15 +59,15 @@ var Utils = {
     return dateObject;
   },
 
-  dateSentinel: function () {
-    let actualDate = new Date();
-    let actualDay = actualDate.getDate();
-    let actualMonth = actualDate.getMonth() + 1;
-    let actualYear = actualDate.getFullYear();
-    let actualDateFormatedString = Utilities.formatDate(
+  dateSentinel() {
+    const actualDate = new Date();
+    const actualDay = actualDate.getDate();
+    const actualMonth = actualDate.getMonth() + 1;
+    const actualYear = actualDate.getFullYear();
+    const actualDateFormatedString = Utilities.formatDate(
       actualDate,
-      "Americas_Sao Paulo",
-      "dd/MM/yyyy",
+      'Americas_Sao Paulo',
+      'dd/MM/yyyy',
     );
 
     return {
@@ -93,18 +92,18 @@ var Utils = {
   //   ).join('\r\n');  // rows starting on new lines
   // },
 
-  actualTimeStamp: function () {
+  actualTimeStamp() {
     return Utilities.formatDate(
       new Date(),
-      "Americas_Sao Paulo",
-      "dd_MM_yyyy_HH_mm_ss",
+      'Americas_Sao Paulo',
+      'dd_MM_yyyy_HH_mm_ss',
     );
   },
 };
 
 // Source: http://stackoverflow.com/questions/497790
-var datesUtil = {
-  convert: function (d) {
+const datesUtil = {
+  convert(d) {
     // Converts the date in d to a date-object. The input can be:
     //   a date object: returned without modification
     //   an array     : Interpreted as [year,month,day]. NOTE: month is 0-11.
@@ -122,11 +121,11 @@ var datesUtil = {
           ? new Date(d)
           : d.constructor === String
             ? new Date(d)
-            : typeof d === "object"
+            : typeof d === 'object'
               ? new Date(d.year, d.month, d.date)
               : NaN;
   },
-  compare: function (a, b) {
+  compare(a, b) {
     // Compare two dates (could be of any type supported by the convert
     // function above) and returns:
     //  -1 : if a < b
@@ -134,21 +133,21 @@ var datesUtil = {
     //   1 : if a > b
     // NaN : if a or b is an illegal date
     // NOTE: The code inside isFinite does an assignment (=).
-    return isFinite((a = this.convert(a).valueOf())) &&
-      isFinite((b = this.convert(b).valueOf()))
+    return isFinite((a = this.convert(a).valueOf()))
+      && isFinite((b = this.convert(b).valueOf()))
       ? (a > b) - (a < b)
       : NaN;
   },
-  inRange: function (d, start, end) {
+  inRange(d, start, end) {
     // Checks if date in d is between dates in start and end.
     // Returns a boolean or NaN:
     //    true  : if d is between start and end (inclusive)
     //    false : if d is before start or after end
     //    NaN   : if one or more of the dates is illegal.
     // NOTE: The code inside isFinite does an assignment (=).
-    return isFinite((d = this.convert(d).valueOf())) &&
-      isFinite((start = this.convert(start).valueOf())) &&
-      isFinite((end = this.convert(end).valueOf()))
+    return isFinite((d = this.convert(d).valueOf()))
+      && isFinite((start = this.convert(start).valueOf()))
+      && isFinite((end = this.convert(end).valueOf()))
       ? start <= d && d <= end
       : NaN;
   },

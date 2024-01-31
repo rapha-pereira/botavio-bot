@@ -1,20 +1,11 @@
-// Heavily inspired by: https://github.com/yinonavraham/GoogleAppsScripts/tree/master/EnhancedCacheService
-
 /**
- * BotavioCache - A wrapper for a native Cache object with additional features.
- *
- * This class enhances the functionality of a native Cache object by providing methods
- * to store and retrieve various data types (string, number, boolean, and object) in the cache.
- * It also supports splitting and merging large string values to work within cache size limits.
- *
- * @param {Cache} cache - The native Cache object to enhance.
+ * BotavioCache - A Botavio-version of Google CacheService.
  * @constructor
  */
 
 class BotavioCache {
   /**
    * Creates a new BotavioCache instance.
-   * 
    */
   constructor() {
     this._cache = CacheService.getScriptCache();
@@ -23,7 +14,7 @@ class BotavioCache {
   // Public methods
   /**
    * Put a Botavio request into cache.
-   * @param {BotavioRequestModel} model - Botavio request model. 
+   * @param {BotavioRequestModel} model - Botavio request model.
    */
   put(model) {
     if (typeof model != BotavioRequestModel) {
@@ -36,13 +27,16 @@ class BotavioCache {
 
   /**
    * Put a Botavio request into cache.
-   * @param {BotavioRequestModel} model - Botavio request model. 
-   * @param {boolean} castReturnToModel - If the cache return, if not null, should be casted to BotavioRequestModel 
+   * @param {BotavioRequestModel} model - Botavio request model.
+   * @param {boolean} castReturnToModel - Cast the return to BotavioRequestModel.
   */
   get(key, castReturnToModel) {
     const getData = this._handleGet(key);
     if (getData != null && castReturnToModel === true) {
-      return 
+      return this._parseStrToModel(getData, BotavioRequestModel);
+    }
+    else {
+      return getData
     }
   }
 
@@ -73,11 +67,11 @@ class BotavioCache {
   }
 
   /**
-   * 
-   * @param {string | null} getData 
-   * @param {Object} modelToParse 
+   *
+   * @param {string} string
+   * @param {Object} modelToParse
    */
-  _parseGetDataToModel(getData, modelToParse) {
+  _parseStrToModel(getData, modelToParse) {
     return Object.assign(new modelToParse, JSON.parse(getData))
   }
 }

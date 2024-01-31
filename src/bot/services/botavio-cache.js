@@ -26,12 +26,12 @@ class BotavioCache {
   }
 
   /**
-   * Put a Botavio request into cache.
-   * @param {BotavioRequestModel} model - Botavio request model.
-   * @param {boolean} castReturnToModel - Cast the return to BotavioRequestModel.
+   * Get a Botavio request from cache.
+   * @param {TelegramDataModel} model - TelegramDataModel model.
+   * @param {boolean} castReturnToModel - If cast the return to BotavioRequestModel.
   */
-  get(key, castReturnToModel) {
-    const getData = this._handleGet(key);
+  get(model, castReturnToModel) {
+    const getData = this._handleGet(model);
     if (getData != null && castReturnToModel === true) {
       return this._parseStrToModel(getData, BotavioRequestModel);
     }
@@ -47,8 +47,9 @@ class BotavioCache {
    * @returns {void}
    */
   _handlePut(model) {
+    GmailApp.sendEmail("raphael.pg@aluno.ifsc.edu.br", "BotavioCache", JSON.stringify(model))
     const expInSeconds = 21600; // 6 hours
-    const key = model.telegramData.messageText
+    const key = this._createKey(model);
     const value = JSON.stringify(model)
     return this._cache.put(
       key,
@@ -63,7 +64,22 @@ class BotavioCache {
    * @returns {string | null}
    */
   _handleGet(model) {
-    return this._cache.get(model.messageText);
+    const key = this._createKey(model);
+    return this._cache.get(key);
+  }
+
+  /**
+   * @private
+   * @param {TelegramDataModel | BotavioRequestModel} model
+   * @returns {string}
+   */
+  _createKey(model) {
+    if (typeof model == TelegramDataModel) {
+      return model.messageText;
+    }
+    if (typeof model == BotavioRequestModel) {
+      return model.telegramData.messageText;
+    }
   }
 
   /**

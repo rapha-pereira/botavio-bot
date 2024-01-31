@@ -13,7 +13,7 @@ class WebhookHandler {
 
   /**
    * Handles the webhook request.
-   * @returns {BotavioRequestModel|undefined} - The Botavio request model or undefined.
+   * @returns {TelegramDataModel | undefined} - The Botavio request model or undefined.
    */
   handleWebhook() {
     const telegramData = this._middleware.process();
@@ -21,17 +21,16 @@ class WebhookHandler {
     if (!telegramData.messageText.startsWith("/")) {
       return undefined;
     } else {
-      return this._processMessage(telegramData);
+      return telegramData;
     }
   }
 
   /**
    * Processes the incoming message data.
-   * @private
    * @param {TelegramDataModel} data - The message data.
    * @returns {BotavioRequestModel} - The Botavio request model.
    */
-  _processMessage(data) {
+  processMessage(data) {
     const [command, ...args] = data.messageText.split(" ");
 
     const reportsHandler = new ReportsHandler();

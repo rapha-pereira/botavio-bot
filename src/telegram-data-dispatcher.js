@@ -8,15 +8,22 @@ function doPost(e) {
 
   // If the queue is free, execute the request
   if (queue.isFreeQueue()) {
-    // Calls Botavio and webhook handler
     const botavio = new Botavio();
-
     const handler = new WebhookHandler(e);
-    const response = handler.handleWebhook();
+    const cache = new BotavioCache();
 
-    // Send response to Telegram if it exists
-    if (response != undefined) {
-      botavio.sendMessage(response);
+    const data = handler.handleWebhook();
+    if (data != undefined) {
+        const botavioRequestModelCached = cache.get(data, true);
+        // If the request is not in cache, process it and cache it
+        if (botavioRequestModelCached == null) {
+          const botavioRequestModel = handler.processMessage(data);
+          botavio.sendMessage(botavioRequestModel);
+          cache.put(botavioRequestModel);
+        } else {
+          // If the request is in cache, send the cached response
+          botavio.sendMessage(botavioResponseModelCached);
+      }
     }
 
     // Release the queue, freeing it for other executions

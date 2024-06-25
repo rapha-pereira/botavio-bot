@@ -55,6 +55,24 @@ For any queries or assistance, feel free to create an issue on the GitHub repo.
 
 - Copy the web app URL provided in the deployment confirmation dialog. This URL will be used to set the Telegram bot webhook.
 
+**3. Update repository `package.json` and `.clasp-dev.json` for simple/auto deploy**
+
+- In the Google Apps Script project editor, go to **_Publish > Manage Deploys_**.
+- On the active deploy, copy the code provided under **_Deployment code_**, save it somewhere.
+- In the Google Apps Script project editor, go to the left tab and go to **_Project settings_**.
+- On the IDs section, copy the code provided under **_Script code_**, save it somewhere.
+- Go to your BotavioBot repository created in the **setup** part, open `package.json` and change:
+```
+  "scripts": {
+    "deploy_dev": "bash ./prepare-deploy.sh dev && npx clasp push -f && npx clasp deploy -i YOUR DEPLOYMENT CODE -d \"Development\"",
+```
+- Now open `.clasp-dev.json` and change:
+```
+{
+  "scriptId": "YOUR SCRIPT CODE",
+```
+> This is useful because you can deploy your bot easily with a command in the terminal (``npm deploy_dev``)
+
 ## Setting Telegram Bot Webhook
 
 **1. Set Webhook URL**
